@@ -1,16 +1,15 @@
-import express from 'express';
-import cron from 'node-cron';
+const express = require('express');
+const cron = require('node-cron');
 
 const { spawn } = require('child_process');
 
 const app = express();
 const port = 3000;
 
-// mardi et vendredi : Ordure ménagère. mercredi : Poubelle recyclable
-cron.schedule('49 19 * * 1,2,4,7', async () => {
-  // Define the path to the backup script
-  const backupScriptPath = '/path/to/backup-script.sh';
+// Define the path to the backup script
+const backupScriptPath = './backup.sh';
 
+cron.schedule('0 0 * * *', async () => {
   // Spawn a child process to run the backup script
   const backupProcess = spawn('bash', [backupScriptPath]);
 
@@ -28,6 +27,8 @@ cron.schedule('49 19 * * 1,2,4,7', async () => {
   backupProcess.on('exit', (code) => {
     console.log(`Backup process exited with code ${code}`);
   });
+
+  // Check and remove backups older than 7 days
 }, {
   timezone: 'Europe/Paris',
 });
