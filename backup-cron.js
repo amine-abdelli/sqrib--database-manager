@@ -9,7 +9,9 @@ const port = 3000;
 // Define the path to the backup script
 const backupScriptPath = './backup.sh';
 
-cron.schedule('0 0 * * *', async () => {
+// Trigger the backup script every day at midnight
+// cron.schedule('0 0 * * *', async () => {
+cron.schedule('*/10 * * * * *', async () => {
   // Spawn a child process to run the backup script
   const backupProcess = spawn('bash', [backupScriptPath]);
 

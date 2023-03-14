@@ -15,7 +15,7 @@
     "docker:rm:volume": "docker volume rm sqrib-database--volume",
     "docker:rm:all": "npm run docker:rm && npm run docker:rm:volume",
     "docker:logs": "docker logs sqrib-database--container",
-    "docker:exec": "docker exec -it sqrib-database--container bash",
+    "docker:exec": "docker exec -it sqrib-database--container sh",
     "docker:backup": "docker exec sqrib-database--container pg_dumpall -c -U postgres > backup.sql",
     "docker:restore": "cat backup.sql | docker exec -i sqrib-database--container psql -U postgres",
     "docker:backup:local": "docker exec sqrib-database--container pg_dumpall -c -U postgres > backup.sql"
