@@ -7,8 +7,18 @@
   "author": "Amine Abdelli <amine.abdelli@outlook.fr>",
   "scripts": {
     "start": "nodemon backup-cron.js",
-    "docker:build": "",
-    "docker:run": ""
+    "docker:build": "docker build -t sqrib-database--image .",
+    "docker:run": "docker run -d -p 5432:5432 -v sqrib-database--volume:/var/lib/postgresql/data --name sqrib-database--container sqrib-database--image",
+    "docker:start": "docker start sqrib-database--container",
+    "docker:stop": "docker stop sqrib-database--container",
+    "docker:rm": "docker rm sqrib-database--container",
+    "docker:rm:volume": "docker volume rm sqrib-database--volume",
+    "docker:rm:all": "npm run docker:rm && npm run docker:rm:volume",
+    "docker:logs": "docker logs sqrib-database--container",
+    "docker:exec": "docker exec -it sqrib-database--container bash",
+    "docker:backup": "docker exec sqrib-database--container pg_dumpall -c -U postgres > backup.sql",
+    "docker:restore": "cat backup.sql | docker exec -i sqrib-database--container psql -U postgres",
+    "docker:backup:local": "docker exec sqrib-database--container pg_dumpall -c -U postgres > backup.sql"
   },
   "dependencies": {
     "cron": "^2.1.0",
