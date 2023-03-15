@@ -1,6 +1,6 @@
 {
-  "name": "database",
-  "version": "1.0.0",
+  "name": "sqrib--database-manager",
+  "version": "0.0.1",
   "main": "index.js",
   "license": "MIT",
   "repository": "https://github.com/amine-abdelli/sqrib--database.git",
