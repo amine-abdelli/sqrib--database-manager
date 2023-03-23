@@ -27,7 +27,6 @@ function log(message, isError = false) {
   const timestamp = new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' });
   const prefix = `${timestamp} - ${isError ? 'ERROR: ' : ''}`;
   const logMessage = `${prefix}${message}`;
-  console.log(logMessage);
   logStream.write(logMessage + '\n');
 }
 

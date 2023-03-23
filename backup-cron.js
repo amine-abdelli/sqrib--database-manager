@@ -10,10 +10,10 @@ const app = express();
 const port = 3000;
 
 // Define the path to the backup script
-const backupScriptPath = './backup.sh';
+const backupScriptPath = './db_backup.sh';
 
 // Trigger the backup script every day at midnight
-cron.schedule('0 0 * * *', async () => {
+cron.schedule('*/10 * * * * *', async () => {
   try {
     log('Starting backup process...');
     // Spawn a child process to run the backup script
