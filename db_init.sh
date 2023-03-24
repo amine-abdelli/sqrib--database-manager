@@ -15,7 +15,7 @@ docker exec -it sqrib-database--container createdb -U postgres sqrib_database
 echo "Configuring container..."
 docker exec -it sqrib-database--container sh -c "sed -i \"s/^#listen_addresses = 'localhost'/listen_addresses = '*'/\" /var/lib/postgresql/data/postgresql.conf"
 docker exec -it sqrib-database--container sh -c "echo 'host    sqrib_database     postgres        172.17.0.1/32         trust' >> /var/lib/postgresql/data/pg_hba.conf"
-
+# TODO Add this => host all all 0.0.0.0/0 md5
 # Restart container
 echo "Restarting container..."
 docker restart sqrib-database--container
